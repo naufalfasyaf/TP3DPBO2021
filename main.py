@@ -7,7 +7,7 @@ from tkinter import filedialog
 
 root = tk.Tk()
 root.title("TP3 DPBO")
-root.geometry('500x600')
+root.geometry('700x500')
 
 
 #Bagian Perintah
@@ -15,11 +15,10 @@ def about():
     top = Toplevel()
     top.title("About")
 
-    d_frame = LabelFrame(top, text="Me", padx=10, pady=10)
+    d_frame = LabelFrame(top, text="About", padx=10, pady=10)
     d_frame.pack(padx=10, pady=10)
 
-    d_summary = Label(d_frame, text="Nama : Naufal Fasya Faddillah \n NIM : 1905166 ",
-                      anchor="w").grid(row=0, column=0, sticky="w")
+    d_summary = Label(d_frame, text="Nama : Naufal Fasya Faddillah \n NIM : 1905166 ", anchor="w").grid(row=0, column=0, sticky="w")
     d_exit = Button(d_frame, text="Exit", command=top.destroy)
     d_exit.grid(row=1, column=0)
 
@@ -31,6 +30,8 @@ def inputdata():
 
     w1 = "push"
     w2 = "pull"
+    w3 = "abs"
+    w4 = "cardio"
 
     #Proses Masuk Data
     file = open("data.txt", "w")
@@ -48,6 +49,18 @@ def inputdata():
         file.write("2. Wide Barbell Curl 3 x 12Rep" + "\n")
         file.write("3. Barbell Pull 3 x 10Rep" + "\n")
         file.write("4. Pull Up 3 x 8Rep" + "\n")
+    if(jenis_workout == w3):
+        file.write("Workout : " + jenis_workout + "\n")
+        file.write("1. Climb Hill 3 x 30sec" + "\n")
+        file.write("2. Side Foot Tap 3 x 30sec" + "\n")
+        file.write("3. Foot-Up 3 x 10Rep" + "\n")
+        file.write("4. V-Up 3 x 8Rep" + "\n")
+    if(jenis_workout == w4):
+        file.write("Workout : " + jenis_workout + "\n")
+        file.write("1. Jog 3 x 5min" + "\n")
+        file.write("2. Skipping 3 x 3min" + "\n")
+        file.write("3. Scott Rush 3 x 10Rep" + "\n")
+        file.write("4. Squat Jump 3 x 10Rep" + "\n")
     file.close()
 
     print("Data Berhasil Dimasukkan")
@@ -71,7 +84,7 @@ frame3 = tk.Frame(root, width=250, bg="RED")
 frame3.pack(fill=tk.X, ipadx=8, ipady=8)
 
 frame1 = tk.Frame(root, width=100)
-frame1.pack(fill=tk.X, padx=10, pady=10, ipadx=10, ipady=10)
+frame1.pack(fill=tk.X, padx=10, pady=5, ipadx=10, ipady=5)
 
 frame2 = tk.Frame(root, width=100)
 frame2.pack(fill=tk.X, padx=5, pady=5, ipadx=5, ipady=5)
@@ -89,7 +102,7 @@ l1.grid(row=0, column=0, padx=10, pady=10)
 l2 = Label(frame1, text="Waktu      :", font=(16))
 l2.grid(row=1, column=0, padx=10, pady=10)
 
-l3 = Label(frame1, text="Workout    :", font=(16))
+l3 = Label(frame1, text="Pull/Push/ABS/Cardio   :", font=(16))
 l3.grid(row=2, column=0, padx=10, pady=10)
 
 l4 = Label(frame1, text="Minggu ke : ", font=(16))
@@ -135,10 +148,10 @@ jenis_wo_input = StringVar()
 minggu = StringVar()
 jk = StringVar()
 
-warna1 = StringVar()
-warna2 = StringVar()
-warna3 = StringVar()
-warna4 = StringVar()
+fav1 = StringVar()
+fav2 = StringVar()
+fav3 = StringVar()
+fav4 = StringVar()
 
 MINGGU = [
     "1",
@@ -165,24 +178,22 @@ jenis_lempar.grid(row=2, column=1)
 minggu_lempar = OptionMenu(frame1, *MINGGU)
 minggu_lempar.grid(row=3, column=1, padx=10, pady=10)
 
-
 R1 = Radiobutton(frame1, text="Perempuan", variable=jk, value=1)
 R1.grid(row=4, column=1)
 
 R2 = Radiobutton(frame1, text="Laki-laki", variable=jk, value=2)
 R2.grid(row=4, column=2)
 
-CB1 = Checkbutton(frame1, text="Push", variable=warna1, onvalue=1, offvalue=0)
+CB1 = Checkbutton(frame1, text="Push", variable=fav1, onvalue=1, offvalue=0)
 CB1.grid(row=5, column=1)
 
-CB2 = Checkbutton(frame1, text="Pull", variable=warna2, onvalue=1, offvalue=0)
+CB2 = Checkbutton(frame1, text="Pull", variable=fav2, onvalue=1, offvalue=0)
 CB2.grid(row=5, column=2)
 
-CB3 = Checkbutton(frame1, text="ABS",
-                  variable=warna3, onvalue=1, offvalue=0)
+CB3 = Checkbutton(frame1, text="ABS", variable=fav3, onvalue=1, offvalue=0)
 CB3.grid(row=5, column=3)
 
-CB4 = Checkbutton(frame1, text="Cardio", variable=warna4, onvalue=1, offvalue=0)
+CB4 = Checkbutton(frame1, text="Cardio", variable=fav4, onvalue=1, offvalue=0)
 CB4.grid(row=5, column=4)
 
 root.mainloop()
